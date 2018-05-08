@@ -20,13 +20,13 @@ spec:
         ports:
         - containerPort: 8080
           name: porto
-        livenessProbe:
+        readinessProbe:
           httpGet:
             path: /
             port: porto
           initialDelaySeconds: 5
           periodSeconds: 10
-        readinessProbe:
+        livenessProbe:
           httpGet:
             path: /healthz
             port: porto
