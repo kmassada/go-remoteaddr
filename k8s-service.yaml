@@ -14,4 +14,4 @@ spec:
     app: go-remoteaddr
   type: NodePort
 status:
-  nodePort: {}
+  loadBalancer: {}
