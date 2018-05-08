@@ -12,6 +12,6 @@ spec:
     targetPort: 8080
   selector:
     app: go-remoteaddr
-  type: LoadBalancer
+  type: NodePort
 status:
-  loadBalancer: {}
+  nodePort: {}
