@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: go-remoteaddr
+spec:
+  containers:
+  - name: go-remoteaddr
+    image: gcr.io/makz-support-eap/go-remoteaddr
+    ports:
+    - containerPort: 8080
+      name: porto
+    livenessProbe:
+      httpGet:
+        path: /
+        port: porto
+      initialDelaySeconds: 5
+      periodSeconds: 10
+    readinessProbe:
+      httpGet:
+        path: /healthz
+        port: porto
+      initialDelaySeconds: 15
+      periodSeconds: 20
