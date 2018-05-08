@@ -5,8 +5,9 @@ import (
 	"net/http"
 )
 
+// Response represents a response sent back to user
 type Response struct {
-	Ip      string
+	IP      string
 	Headers http.Header
 }
 
@@ -18,7 +19,17 @@ func printHeader(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 
 }
+
+func healthzHandler(w http.ResponseWriter, r *http.Request) {
+	if true {
+		w.WriteHeader(http.StatusNoContent)
+		return
+	}
+	w.WriteHeader(http.StatusServiceUnavailable)
+}
+
 func main() {
+	http.HandleFunc("/healthz", healthzHandler)
 	http.HandleFunc("/", printHeader)
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		panic(err)
